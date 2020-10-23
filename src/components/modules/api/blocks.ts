@@ -206,6 +206,37 @@ export default class BlocksAPI extends Module {
     data: BlockToolData = {},
     config: ToolConfig = {},
     index?: number,
+    needToFocus?: boolean,
+    metaData?: any
+  
+  ): void => {
+    this.Editor.BlockManager.insert({
+      tool: type,
+      data,
+      index,
+      needToFocus,
+      replace: false,
+      metaData
+    });
+  }
+
+  /**
+   * Insert new  meta bBlock
+   *
+   * @param {string} type — Tool name
+   * @param {BlockToolData} data — Tool data to insert
+   * @param {ToolConfig} config — Tool config
+   * @param {number?} index — index where to insert new Block
+   * @param {boolean?} needToFocus - flag to focus inserted Block
+   *  @param {any?} metaData - other data to store
+
+   */
+  public insertMetaBlock = (
+    type: string = this.config.defaultBlock,
+    data: BlockToolData = {},
+    metaData: any = {} ,
+    config: ToolConfig = {},
+    index?: number,
     needToFocus?: boolean
   ): void => {
     this.Editor.BlockManager.insert({
@@ -213,6 +244,8 @@ export default class BlocksAPI extends Module {
       data,
       index,
       needToFocus,
+      metaData ,
+
     });
   }
 

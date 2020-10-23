@@ -219,7 +219,7 @@ export default class BlockManager extends Module {
    *
    * @returns {Block}
    */
-  public composeBlock({ tool, data = {} }: {tool: string; data?: BlockToolData}): Block {
+  public composeBlock({ tool, data = {} ,metaData = {}}: {tool: string; data?: BlockToolData; metaData?: {}}): Block {
     const readOnly = this.Editor.ReadOnly.isEnabled;
     const settings = this.Editor.Tools.getToolSettings(tool);
     const Tool = this.Editor.Tools.available[tool] as BlockToolConstructable;
@@ -230,6 +230,7 @@ export default class BlockManager extends Module {
       settings,
       api: this.Editor.API,
       readOnly,
+      metaData,
     });
 
     if (!readOnly) {
@@ -257,12 +258,14 @@ export default class BlockManager extends Module {
     index,
     needToFocus = true,
     replace = false,
+    metaData = {},
   }: {
     tool?: string;
     data?: BlockToolData;
     index?: number;
     needToFocus?: boolean;
     replace?: boolean;
+    metaData?: any 
   } = {}): Block {
     let newIndex = index;
 
@@ -273,6 +276,7 @@ export default class BlockManager extends Module {
     const block = this.composeBlock({
       tool,
       data,
+      metaData
     });
 
     this._blocks.insert(newIndex, block, replace);

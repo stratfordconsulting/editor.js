@@ -7,6 +7,7 @@ export interface SavedData {
   tool: string;
   data: BlockToolData;
   time: number;
+  metaData: any;
 }
 
 /**
@@ -17,4 +18,5 @@ export interface ValidatedData {
   data?: BlockToolData;
   time?: number;
   isValid: boolean;
+  
 }

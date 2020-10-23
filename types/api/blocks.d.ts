@@ -97,6 +97,7 @@ export interface Blocks {
     config?: ToolConfig,
     index?: number,
     needToFocus?: boolean,
+    metaData?: any
   ): void;
 
 }

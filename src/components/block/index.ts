@@ -56,6 +56,10 @@ interface BlockConstructorOptions {
    * This flag indicates that the Block should be constructed in the read-only mode.
    */
   readOnly: boolean;
+
+  metaData : any ;
+
+
 }
 
 /**
@@ -111,6 +115,9 @@ export default class Block {
    * Block Tool`s name
    */
   public name: string;
+
+
+  public metaData: any ;
 
   /**
    * Instance of the Tool Block represents
@@ -213,6 +220,7 @@ export default class Block {
     settings,
     api,
     readOnly,
+    metaData,
   }: BlockConstructorOptions) {
     this.name = name;
     this.class = Tool;
@@ -220,6 +228,7 @@ export default class Block {
     this.config = settings.config || {};
     this.api = api;
     this.blockAPI = new BlockAPI(this);
+    this.metaData = metaData ;
 
     this.mutationObserver = new MutationObserver(this.didMutated);
 
@@ -552,6 +561,7 @@ export default class Block {
         return {
           tool: this.name,
           data: finishedExtraction,
+          metaData: this.metaData,
           time: measuringEnd - measuringStart,
         };
       })

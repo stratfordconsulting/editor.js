@@ -191,6 +191,9 @@ export default class Blocks {
    * @param {boolean} replace — it true, replace block on given index
    */
   public insert(index: number, block: Block, replace = false): void {
+
+    console.log("Test sters");
+
     if (!this.length) {
       this.push(block);
 
